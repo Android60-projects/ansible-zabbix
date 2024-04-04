@@ -1,13 +1,17 @@
 ---
 roles:
-  - name: buluma.bootstrap
-  - name: buluma.ca_certificates
-  - name: buluma.core_dependencies
-  - name: buluma.container_docs
-  - name: buluma.mysql
-  - name: buluma.selinux
-  - name: buluma.zabbix_repository
-  - name: buluma.zabbix_server
+  - name: robertdebock.bootstrap
+  - name: robertdebock.ca_certificates
+  - name: robertdebock.core_dependencies
+  - name: robertdebock.container_docs
+  - name: robertdebock.mysql
+    src: git+https://github.com/robertdebock/ansible-role-mysql
+  - name: robertdebock.selinux
+  - name: robertdebock.zabbix_repository
+  - name: robertdebock.zabbix_server
+    src: git+https://github.com/robertdebock/ansible-role-zabbix_server
+  - name: robertdebock.zabbix_web
+    src: git+https://github.com/robertdebock/ansible-role-zabbix_web
 collections:
   - name: ansible.posix
   - name: community.mysql

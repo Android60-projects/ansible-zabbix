@@ -4,6 +4,16 @@
   become: yes
 
   pre_tasks:
+    - name: add apt signing key for mariadb
+      ansible.builtin.apt_key:
+        url: https://mariadb.org/mariadb_release_signing_key.asc
+        state: present
+
+    - name: Add mariadb repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64] http://mariadb.mirror.globo.tech/repo/10.5/ubuntu {{ ansible_distribution_release }} main"
+        state: present
+
     - name: Update apt cache (on Debian).
       apt:
         update_cache: true
@@ -11,7 +21,10 @@
       when: ansible_os_family == 'Debian'
 
   roles:
-    - role: buluma.mysql
+    - role: robertdebock.bootstrap
+    - role: robertdebock.selinux
+    - role: robertdebock.container_docs
+    - role: robertdebock.mysql
       mysql_databases:
         - name: zabbix
           encoding: utf8
@@ -20,13 +33,14 @@
         - name: zabbix
           password: zabbix
           priv: "zabbix.*:ALL"
-    - role: buluma.ca_certificates
-    - role: buluma.zabbix_repository
-    - role: buluma.core_dependencies
+    - role: robertdebock.ca_certificates
+    - role: robertdebock.zabbix_repository
+    - role: robertdebock.core_dependencies
 
 - name: Install Zabbix
   hosts: all
   gather_facts: yes
   become: yes
   roles:
-    - role: buluma.zabbix_server
+    - role: robertdebock.zabbix_server
+    - role: robertdebock.zabbix_web
