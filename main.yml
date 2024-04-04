@@ -1,0 +1,26 @@
+- name: Prepare
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  roles:
+    - role: buluma.bootstrap
+    - role: buluma.mysql
+      mysql_databases:
+        - name: zabbix
+          encoding: utf8
+          collation: utf8_bin
+      mysql_users:
+        - name: zabbix
+          password: zabbix
+          priv: "zabbix.*:ALL"
+    - role: buluma.ca_certificates
+    - role: buluma.zabbix_repository
+    - role: buluma.core_dependencies
+
+- name: Install Zabbix
+  hosts: all
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: buluma.zabbix_server
