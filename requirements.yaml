@@ -12,6 +12,7 @@ roles:
     src: git+https://github.com/robertdebock/ansible-role-zabbix_server
   - name: robertdebock.zabbix_web
     src: git+https://github.com/robertdebock/ansible-role-zabbix_web
+  - name: robertdebock.zabbix_agent
 collections:
   - name: ansible.posix
   - name: community.mysql
