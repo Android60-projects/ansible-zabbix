@@ -21,10 +21,12 @@
       when: ansible_os_family == 'Debian'
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.selinux
-    - role: robertdebock.container_docs
+    # - role: robertdebock.bootstrap
+    # - role: robertdebock.selinux
+    # - role: robertdebock.container_docs
     - role: robertdebock.mysql
+      mysql_root_password: "password"
+      mysql_innodb_buffer_pool_size: 500M
       mysql_databases:
         - name: zabbix
           encoding: utf8
@@ -33,9 +35,9 @@
         - name: zabbix
           password: zabbix
           priv: "zabbix.*:ALL"
-    - role: robertdebock.ca_certificates
+    # - role: robertdebock.ca_certificates
     - role: robertdebock.zabbix_repository
-    - role: robertdebock.core_dependencies
+    # - role: robertdebock.core_dependencies
 
 - name: Install Zabbix
   hosts: all
