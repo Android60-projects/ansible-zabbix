@@ -44,3 +44,7 @@
   roles:
     - role: robertdebock.zabbix_server
     - role: robertdebock.zabbix_web
+      zabbix_web_database_host: "localhost"
+      zabbix_web_database_port: "0"
+      zabbix_web_mysql_connection: "network"
+    - role: robertdebock.zabbix_agent
