@@ -10,8 +10,8 @@ roles:
   - name: robertdebock.zabbix_repository
   - name: robertdebock.zabbix_server
     src: git+https://github.com/robertdebock/ansible-role-zabbix_server
-  - name: robertdebock.zabbix_web
-    src: git+https://github.com/robertdebock/ansible-role-zabbix_web
+  - name: android06.zabbix_web
+    src: git+https://github.com/Android60-projects/ansible-role-zabbix_web
   - name: robertdebock.zabbix_agent
 collections:
   - name: ansible.posix

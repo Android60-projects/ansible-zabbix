@@ -45,8 +45,10 @@
   become: yes
   roles:
     - role: robertdebock.zabbix_server
-    - role: robertdebock.zabbix_web
+    - role: android06.zabbix_web
       zabbix_web_database_host: "localhost"
       zabbix_web_database_port: "0"
       zabbix_web_mysql_connection: "network"
+      zabbix_web_extra_options: |
+        $DB['DOUBLE_IEEE754'] = 'true';
     - role: robertdebock.zabbix_agent
